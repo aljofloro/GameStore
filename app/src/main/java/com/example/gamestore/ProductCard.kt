@@ -5,6 +5,8 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -21,35 +23,40 @@ import androidx.compose.ui.unit.sp
 import com.example.gamestore.ui.theme.GameStoreTheme
 
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ProductCard(
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  onClickProduct: () -> Unit = {}
 ){
-  Column(modifier = modifier,
-  horizontalAlignment = Alignment.CenterHorizontally) {
-    Image(
-      painter = painterResource(id = R.drawable.ic_launcher_foreground),
-      contentDescription = null,
-      modifier = Modifier
-        .size(40.dp)
-        .clip(CircleShape)
-        .border(1.dp, MaterialTheme.colors.secondary, CircleShape)
-    )
-    Text(
-      text = stringResource(R.string.productName),
-      maxLines = 1,
-      overflow = TextOverflow.Ellipsis,
-      fontSize = 14.sp,
-      fontWeight = FontWeight.Bold
-    )
-    Text(
-      text = stringResource(R.string.productDescription),
-      maxLines = 1,
-      overflow = TextOverflow.Ellipsis,
-      fontSize = 8.sp,
-      fontWeight = FontWeight.Medium
-    )
+  Card(onClick = onClickProduct) {
+    Column(modifier = modifier,
+      horizontalAlignment = Alignment.CenterHorizontally) {
+      Image(
+        painter = painterResource(id = R.drawable.ic_launcher_foreground),
+        contentDescription = null,
+        modifier = Modifier
+          .size(40.dp)
+          .clip(CircleShape)
+          .border(1.dp, MaterialTheme.colors.secondary, CircleShape)
+      )
+      Text(
+        text = stringResource(R.string.productName),
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Bold
+      )
+      Text(
+        text = stringResource(R.string.productDescription),
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
+        fontSize = 8.sp,
+        fontWeight = FontWeight.Medium
+      )
+    }
   }
+
 }
 
 @Preview(showBackground = true)

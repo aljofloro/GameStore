@@ -8,7 +8,8 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun DetailFragment(
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  gamesId:Int
 ) {
   Surface(modifier = modifier.fillMaxSize(),
   color = MaterialTheme.colors.background) {

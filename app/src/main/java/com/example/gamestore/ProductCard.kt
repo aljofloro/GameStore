@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.rememberAsyncImagePainter
 import com.example.gamestore.ui.theme.GameStoreTheme
 
 
@@ -27,13 +28,17 @@ import com.example.gamestore.ui.theme.GameStoreTheme
 @Composable
 fun ProductCard(
   modifier: Modifier = Modifier,
+  name:String = "",
+  imageUrl:String = "",
+  releasedDate:String = "",
   onClickProduct: () -> Unit = {}
 ){
   Card(onClick = onClickProduct) {
     Column(modifier = modifier,
       horizontalAlignment = Alignment.CenterHorizontally) {
       Image(
-        painter = painterResource(id = R.drawable.ic_launcher_foreground),
+        painter = rememberAsyncImagePainter(model = imageUrl,
+        error = painterResource(id = R.drawable.ic_launcher_foreground)),
         contentDescription = null,
         modifier = Modifier
           .size(40.dp)
@@ -41,14 +46,14 @@ fun ProductCard(
           .border(1.dp, MaterialTheme.colors.secondary, CircleShape)
       )
       Text(
-        text = stringResource(R.string.productName),
+        text = name,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
         fontSize = 14.sp,
         fontWeight = FontWeight.Bold
       )
       Text(
-        text = stringResource(R.string.productDescription),
+        text = releasedDate,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
         fontSize = 8.sp,

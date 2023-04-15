@@ -17,11 +17,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import coil.compose.rememberAsyncImagePainter
 import com.example.gamestore.ui.theme.GameStoreTheme
 
 @Composable
 fun ProductHeader(
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  name:String = "",
+  imageUrl:String = "",
+  releasedDate:String = ""
 ){
   ConstraintLayout(modifier = modifier) {
     val(
@@ -31,8 +35,9 @@ fun ProductHeader(
     ) = createRefs()
 
     Image(
-      painter = painterResource(R.drawable.ic_launcher_foreground),
-      contentDescription = null,
+      painter = rememberAsyncImagePainter(model = imageUrl,
+      error = painterResource(id = R.drawable.ic_launcher_foreground)),
+      contentDescription = name,
       modifier = Modifier
         .size(96.dp)
         .clip(CircleShape)
@@ -44,7 +49,7 @@ fun ProductHeader(
         }
     )
     Text(
-      text = stringResource(R.string.productName),
+      text = name,
       maxLines = 1,
       overflow = TextOverflow.Ellipsis,
       fontSize = 20.sp,
@@ -56,7 +61,7 @@ fun ProductHeader(
         }
     )
     Text(
-      text = stringResource(R.string.productCreator),
+      text = releasedDate,
       maxLines = 1,
       overflow = TextOverflow.Ellipsis,
       fontSize = 18.sp,

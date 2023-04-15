@@ -37,8 +37,10 @@ fun ProductCard(
     Column(modifier = modifier,
       horizontalAlignment = Alignment.CenterHorizontally) {
       Image(
-        painter = rememberAsyncImagePainter(model = imageUrl,
-        error = painterResource(id = R.drawable.ic_launcher_foreground)),
+        painter = rememberAsyncImagePainter(
+          model = imageUrl,
+          error = painterResource(id = R.drawable.ic_launcher_foreground)
+        ),
         contentDescription = null,
         modifier = Modifier
           .size(40.dp)
